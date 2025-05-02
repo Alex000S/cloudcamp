@@ -92,6 +92,38 @@
 4. опционально: поднять ingress-controller и создать правило ingress;
 5. опционально: использовать helm-chart, а не raw манифест.
 
+После установки kubernetes нужно написать манифесты для выполнения задания.
+
+![configmap](images/configmap.png)
+
+![deployment](images/deployment.png)
+
+![ingress](images/ingress.png)
+
+![namespace](images/namespace.png)
+
+![secret](images/secret.png)
+
+![service](images/service.png)
+
+Далее нужно подтвердить наши манифесты с помощью команд: 
+kubectl apply -f secret.yml -n venv
+kubectl apply -f deployment.yml -n venv
+kubectl apply -f configmap.yml -n venv
+kubectl apply -f service.yml -n venv
+kubectl apply -f ingress.yml -n venv
+
+И после этого мы можем проверить вывод нашего приложения на каждом контейнере и вывод сервиса
+
+![container1](images/container1.png)
+
+![container2](images/container2.png)
+
+![container3](images/container3.png)
+
+![container4](images/container4.png)
+
+
 В ответе к задаче приложить:
 - исходный код всех манифестов
 
