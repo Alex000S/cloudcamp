@@ -1,0 +1,2 @@
+[managers]
+manager ansible_host=192.168.56.11 ansible_user=vagrant ansible_ssh_private_key_file=/home/selenesa/Desktop/cloudcamp/.vagrant/machines/manager/virtualbox/private_key

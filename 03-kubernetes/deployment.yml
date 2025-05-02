@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: echo-server-deployment
+  namespace: venv
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: echo-server
+  template:
+    metadata:
+      labels:
+        app: echo-server
+    spec:
+      imagePullSecrets:
+        - name: regcreds
+      containers:
+        - name: echo-server
+          image: docker.io/selenesa/my-flask-app:v2
+          ports:
+            - containerPort: 8000
+          env:
+            - name: AUTHOR
+              valueFrom:
+                configMapKeyRef:
+                  name: echo-config
+                  key: author
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          readinessProbe:
+            httpGet:
+              path: /readiness
+              port: 8000
+            initialDelaySeconds: 5
+            periodSeconds: 10
